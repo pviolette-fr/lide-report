@@ -42,7 +42,17 @@ Tres court parce que y'a pas grand chose à dire
 
 \subsection{Personnalisation}
 
-\begin{figure}
+Toute personne ayant travaillé en groupe sur un projet informatique à pu remarquer que chacun à ces préference de thème pour un éditeur : certains préfere un fond sombre, d'autre un fond clair, etc...
+L'éditeur Ace est facilement personnalisable, et dispose par défault de 24 thèmes. Il était donc assez rapide d'implementer à formulaire permettant à l'utilisateur de choisir le thème qui lui convient le mieux,
+lui permettant ainsi de facilement s'approprier son outil de travail.
+
+La police est également personnalisable, permettant à chacun d'utiliser une taille de police qui lui convient.
+
+La console ayant un style implementer par le css, il fut de même aisé de créer des thèmes qui s'applique grâce à une classe attribué à l'élement div contenant la console.
+Pour l'instant, seul trois style de console sont implémenter, mais il serait aisé d'en ajouté d'autre dans des versions future.
+Chaque style a une classe maitresse \emph{.console-nom\_style}, et on redéfini ensuite les classes \emph{jqconsole} grâce aux selecteurs css.
+
+\begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{./frontend/example_personnalisation.png}
 \caption{Formulaire permettant la personnalisation de l'interface}
@@ -51,9 +61,11 @@ Tres court parce que y'a pas grand chose à dire
 \subsection{Gestions des fichiers}
 Tel un véritable EDI, notre application permet la gestion de multiples fichiers. Cette gestion est effectué sur le navigateur, par du javascript.
 
-\subsubsection{Stockage des fichiers et changement de fichier en cours d'édition}
+Les fichiers sont enregistré dans un prototype contenant deux champs : \emph{name}, le nom du fichier, et \emph{content} son contenu. Ces prototype sont ensuite stockés dans la variable
+globale \emph{files}, un tableau de fichier. À chaque changement de fichier en cours d'édition, le contenu de l'éditeur est sauvegardé et ensuite remplacé par le contenu du nouveau fichier à éditer.
 
-Chaque fichier est représenté en JS sous la forme d'un prototype 
+Les fichiers peuvent être créer de deux façon : soit en important un fichier depuis sont ordinateur (bouton importation), soit par création à partir de modèles défini par l'administrateur pour le langage.
+On laisse également la possibilté de créer des fichiers vides (par exemple pour créer un fichier de données utilisé lors de l'éxecution du programme).
 
 
 \section{Compilation et exécution}
