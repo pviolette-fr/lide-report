@@ -1,17 +1,17 @@
-\chapter{Communication Serveur/GUI}
+\section{Communication Serveur/GUI}
 
-\section{Outils utilisés}
+\subsection{Outils utilisés}
 
 libssh2, service symfony
 La communication entre le front end et le back end contient deux classes principales : ConsoleController et GestionSSH.
 
-\section{Processus de communication}
+\subsection{Processus de communication}
 
-\subsection{Envoi des requêtes}
+\subsubsection{Envoi des requêtes}
 
 \par L’utilisateur saisie son programme dans l’éditeur de texte et appuie sur le bouton Run. Une requête est ensuite envoyée à l'application qui va récupérer le ou les fichiers à compiler, ouvrir une connexion SSH avec le serveur contenant les images docker. Un conteneur est ensuite crée afin de lancer la compilation et l’exécution du programme grâce à un script. 
 
-\subsection{Réception des réponses du serveur}
+\subsubsection{Réception des réponses du serveur}
 
 \par Une fois l'exécution lancée, l'application lis la sortie standard du conteneur. Le texte récupéré est ensuite retourné à l'interface utilisateur qui va l'afficher dans la vue jqconsole.
 
