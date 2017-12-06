@@ -1,18 +1,29 @@
 \section{Communication Serveur/GUI}
 
+\subsection{Présentation}
+
+\par La communication entre le serveur de l'application et les conteneurs repose sur une connexion SSH. L'application se connecte au serveur contenant les dockers afin de communiquer les messages et d'exécuter les commandes qui lui sont donnés.
+
 \subsection{Outils utilisés}
 
-libssh2, service symfony
-La communication entre le front end et le back end contient deux classes principales : ConsoleController et GestionSSH.
+\par L'utilisation de Symfony a permis l'utilisation de la librairie libssh2 de PHP. Cette librairie permet de gérer facilement une connexion SSH en PHP.
 
 \subsection{Processus de communication}
 
-\subsubsection{Envoi des requêtes}
+\par Le processus de communication repose sur un système de questions/réponses. Le client demande des informations et le serveur lui répond.
 
-\par L’utilisateur saisie son programme dans l’éditeur de texte et appuie sur le bouton Run. Une requête est ensuite envoyée à l'application qui va récupérer le ou les fichiers à compiler, ouvrir une connexion SSH avec le serveur contenant les images docker. Un conteneur est ensuite crée afin de lancer la compilation et l’exécution du programme grâce à un script. 
+\subsubsection{Envoi des requêtes et réception des réponses}
 
-\subsubsection{Réception des réponses du serveur}
+\paragraph*{Première requête envoyée (appui sur le bouton Lancer)} \
 
-\par Une fois l'exécution lancée, l'application lis la sortie standard du conteneur. Le texte récupéré est ensuite retourné à l'interface utilisateur qui va l'afficher dans la vue jqconsole.
+\par L'application reçoit la requête du client. Elle va créer la commande qui permet de démarrer un conteneur docker et de lancer le script qui se charge de la compilation et de l'exécution du programme. La commande est ensuite passé au service GestionSSH qui se charge de se connecter en SSH au serveur qui contient les conteneurs et d'exécuter la commande grâce à un shell. 
 
-\par Dans les cas où le programme nécessite des entrées, l'utilisateur entrera ses messages dans la vue jqconsole. Ces messages seront ensuite envoyés à l'application qui se chargera de rouvrir une connexion SSH avec le serveur et d'envoyer les messages au conteneur.
+\par L'application récupère ensuite la sortie standard du programme, toujours grâce au service GestionSSH. Elle répond ensuite au client, qui attend toujours la réponse du serveur. Le client affiche ensuite la réponse dans la vue jqconsole.
+
+\paragraph*{Envoi des requêtes suivantes} \
+
+\par Dans certains programmes, l'utilisateur a besoin de répondre au programme pour que celui-ci se termine (fonction d'inputs). Dans ce cas, l'application teste si le docker est encore ouvert et le redémarre si c'est le cas. Le message est ensuite passé au service de GestionSSH qui se charge de la transmettre au conteneur grâce à SSH.
+
+\par L'application récupère de nouveau la sortie standard du programme pour l'envoyer au client. Cette opération se répète jusqu'à ce que l'exécution du programme soit terminée.
+
+\subsection{Architecture des classes}
