@@ -31,6 +31,9 @@ L'interface est divisée en quatre parties :
 %SweetAlert2 pour les alertes trop swag
 %JQConsole vite zef parceque c'est valou qui l'a fait
 
+Du coté du serveur, la génération de la page se fait grâce à symfony via le DefaultController et le moteur de template Twig. Cela nous permet de génerer la page en fonction des informations présentent dans la Base de Données
+
+
 \subsection{Organisation des templates TWIG}
 
 \section{Environnement de Développement}
@@ -38,23 +41,17 @@ L'interface est divisée en quatre parties :
 \subsection{Gestions des langages}
 Blabla DB changement de langage
 
-\subsection{Éditeur de texte}
-Tres court parce que y'a pas grand chose à dire
-
 \subsection{Personnalisation}
 
-Toute personne ayant travaillé en groupe sur un projet informatique a pu remarquer que chacun à ses préférences de thème pour un éditeur : certains préfèrent un fond sombre, d'autres un fond clair, etc...
-L'éditeur Ace est facilement personnalisable et dispose, par défaut, de 24 thèmes. Il était donc assez rapide d'implémenter un formulaire permettant à l'utilisateur de choisir le thème qui lui convient le mieux, lui permettant ainsi de facilement s'approprier son outil de travail.
+Toute personne ayant travaillé en groupe sur un projet informatique a pu remarquer que chacun à ses préférences de thème pour un éditeur : certains préfèrent un fond sombre, d'autres un fond clair, etc... L'éditeur Ace est facilement personnalisable et dispose, par défaut, de 24 thèmes. Il était donc assez rapide d'implémenter un formulaire permettant à l'utilisateur de choisir le thème qui lui convient le mieux, lui permettant ainsi de facilement s'approprier son outil de travail.
 
 La police est également personnalisable, permettant à chacun d'utiliser une taille de police qui lui convient.
 
-La console ayant un style implémenter par le CSS, il fut de même aisé de créer des thèmes qui s'appliquent grâce à une classe attribuée à l'élément div contenant la console.
-Pour l'instant, seul trois styles de console sont implémenter, mais il serait aisé d'en ajouter d'autres dans des versions futures.
-Chaque style a une classe maîtresse \emph{.console-nom\_style}, et on redéfinit ensuite les classes \emph{jqconsole} grâce aux sélecteurs CSS. Voir le fichier \emph{console.css}.
+La console ayant un style implémenter par le CSS, il fut de même aisé de créer des thèmes qui s'appliquent grâce à une classe attribuée à l'élément div contenant la console. Pour l'instant, seul trois styles de console sont implémenter, mais il serait aisé d'en ajouter d'autres dans des versions futures. Chaque style a une classe maîtresse \emph{.console-nom\_style}, et on redéfinit ensuite les classes \emph{jqconsole} grâce aux sélecteurs CSS. Voir le fichier \emph{console.css}.
 
 Tous ces changements sont pour l'instant uniquement gérer en local (voir fichier \emph{options.js}).
 
-\begin{figure}[!h]oir le fichier \emph{console.css}.
+\begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{./img/frontend/example_personnalisation.png}
 \caption{Formulaire permettant la personnalisation de l'interface}
@@ -73,13 +70,25 @@ On laisse également la possibilité de créer des fichiers vides (par exemple p
 
 \subsection{Formulaire}
 
+Le formulaire pour compiler et exécuter est un formulaire génerer par symfony à partir de l'entity \texttt{Execution} et de la classe \texttt{ExecutionType}. Le formulaire comporte 7 champs :
+\begin{itemize}
+  \item Les paramètres de compilations : arguments passé au compilateurs.
+  \item Les paramètres de lancement : arguments données au programme.
+  \item Fichiers additionnels : l'utilisateur peut choisir des fichiers depuis son ordinateurs qui seront join au fichiers présents dans l'IDE.
+  \item Une options Compilation Uniquement : si activer, seul la compilation sera effectuée, le programme ne sera pas lancé.
+  \item{ Un choix de gestion du flux d'entrée :
+  \begin{itemize}
+    \item Aucun : aucune gestion des entrées n'est effectué.
+    \item Interractive : entrée interractive, l'utilisateur écris sur le flux d'entrée au fur et à mesure de l'éxecution du programme.
+    \item Texte : les entrées sont défini à l'avance, le programme utilise un fichier comme flux d'entrée.
+  \end{itemize}}
+  \item Les entrées à données au programme : seulement si le mode de gestion des entrées Texte est sélectionné.
+  \item Un champs caché alimenté par le javascript, contenant le JSON correspondant à la liste des fichiers.
+\end{itemize}
 
 \subsection{Lancement de la compilation et de l'exécution}
 
-Le lancement de la compilation et de l'exécution du code écrit est demandé par l'appui sur le bouton "Lancer" qui appelle une fonction JS envoyant une requête AJAX
-vers la méthode ConsoleController::execAction (fichier ConsoleController.php). Cette requête contient le formulaire qui est ensuite traité : les fichiers vont être écrits dans
-le système du fichier dans un dossier temporaire, le script de lancement et d'exécution correspondant au langage est récupéré dans la base de donnée et placé dans ce même répertoire.
-Une commande, qui va permettre de lancer le docker, est ensuite construite. Cette commande va :
+Le lancement de la compilation et de l'exécution du code écrit est demandé par l'appui sur le bouton "Lancer" qui appelle une fonction JS envoyant une requête AJAX vers la méthode \texttt{ConsoleController::execAction} (fichier ConsoleController.php). Cette requête contient le formulaire qui est ensuite traité : les fichiers vont être écrits dans le système du fichier dans un dossier temporaire, le script de lancement et d'exécution correspondant au langage est récupéré dans la base de donnée et placé dans ce même répertoire. Une commande, qui va permettre de lancer le docker, est ensuite construite. Cette commande va :
 \begin{itemize}
   \item Stopper le container de l'utilisateur s'il existe.
   \item{Lancer un container basé sur l'image correspondante au langage, de nom \emph{id\_[id\_user]A}, paramétré pour être supprimé à la fin de l'exécution de la commande de lancement. Cette commande de lancement va :
@@ -93,13 +102,13 @@ Une commande, qui va permettre de lancer le docker, est ensuite construite. Cett
 
 Les paramètres du script à lancer sont :
 \begin{itemize}
-  \item -o 'options\_de\_compilation', pour les paramètres à passer au compilateur
-  \item -f 'fichier1 fichier2...'', la liste des fichiers de l'utilisateur (récupérée par un wget)
-  \item -i fichier, le nom du fichier contenant les inputs s'il est nécessaire
-  \item -n, pour un mode non interactif.
-  \item -a 'agr0 arg1 ...', les arguments à donner au programme
-  \item -c, pour uniquement effectuer la compilation
-  \item -w 'wget\_adr' l'adresse où effectuer le wget.
+  \item \texttt{-o 'options\_de\_compilation'}, pour les paramètres à passer au compilateur
+  \item \texttt{-f 'fichier1 fichier2...'}, la liste des fichiers de l'utilisateur (récupérée par un wget)
+  \item \texttt{-i fichier}, le nom du fichier contenant les inputs s'il est nécessaire
+  \item \texttt{-n}, pour un mode non interactif.
+  \item \texttt{-a 'agr0 arg1 ...'}, les arguments à donner au programme
+  \item \texttt{-c}, pour uniquement effectuer la compilation
+  \item \texttt{-w 'wget\_adr'} l'adresse où effectuer le wget.
 \end{itemize}
 
 \subsection{Terminal}
@@ -115,3 +124,5 @@ Les paramètres du script à lancer sont :
 \section{Problème rencontré et amélioration possible}
 
 \subsection{Rendre l'interface Responsive}
+
+\subsection{Persistance des options de personnalisation en base de données}
