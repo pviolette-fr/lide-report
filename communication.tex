@@ -12,7 +12,7 @@
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{./img/com.png}
+\includegraphics[width=0.8\textwidth]{./img/communication/com.png}
 \caption{Schéma simplifié de la communication}
 \end{figure}
 
@@ -37,14 +37,14 @@
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{./img/newcomoutput.png}
+\includegraphics[width=0.8\textwidth]{./img/communication/newcomoutput.png}
 \caption{Gestion des outputs dans la future communication}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{./img/envoiinput.png}
+\includegraphics[width=0.8\textwidth]{./img/communication/envoiinput.png}
 \caption{Envoi des inputs dans la future communication}
 \end{figure}
 
-\par Cette implémentation est très critiquable et sera totalement modifiée dans la prochaine version de l'application. Il faudra faire en sorte que le client envoie en continu des demandes d'outputs. Les inputs seront envoyés sans prendre en compte les sorties du docker et seront prises en compte par le conteneur seulement si celui-ci attend quelque chose de l'utilisateur.
+\par Cette implémentation est très critiquable et sera totalement modifiée dans la prochaine version de l'application. Il faudra alors faire en sorte que le client envoie en continu des demandes d'outputs. Les inputs seront envoyées et n'attendront pas de réponse. Elles seront prises en compte par le conteneur seulement si celui-ci attend un message de l'utilisateur.

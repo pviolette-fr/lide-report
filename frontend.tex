@@ -43,15 +43,14 @@ Tres court parce que y'a pas grand chose à dire
 
 \subsection{Personnalisation}
 
-Toute personne ayant travaillé en groupe sur un projet informatique à pu remarquer que chacun à ces préference de thème pour un éditeur : certains préfere un fond sombre, d'autre un fond clair, etc...
-L'éditeur Ace est facilement personnalisable, et dispose par défault de 24 thèmes. Il était donc assez rapide d'implementer à formulaire permettant à l'utilisateur de choisir le thème qui lui convient le mieux,
-lui permettant ainsi de facilement s'approprier son outil de travail.
+Toute personne ayant travaillé en groupe sur un projet informatique a pu remarquer que chacun à ses préférences de thème pour un éditeur : certains préfèrent un fond sombre, d'autres un fond clair, etc...
+L'éditeur Ace est facilement personnalisable et dispose, par défaut, de 24 thèmes. Il était donc assez rapide d'implémenter un formulaire permettant à l'utilisateur de choisir le thème qui lui convient le mieux, lui permettant ainsi de facilement s'approprier son outil de travail.
 
 La police est également personnalisable, permettant à chacun d'utiliser une taille de police qui lui convient.
 
-La console ayant un style implementer par le css, il fut de même aisé de créer des thèmes qui s'applique grâce à une classe attribué à l'élement div contenant la console.
-Pour l'instant, seul trois style de console sont implémenter, mais il serait aisé d'en ajouté d'autre dans des versions future.
-Chaque style a une classe maitresse \emph{.console-nom\_style}, et on redéfini ensuite les classes \emph{jqconsole} grâce aux selecteurs css. Voir le fichier \emph{console.css}.
+La console ayant un style implémenter par le CSS, il fut de même aisé de créer des thèmes qui s'appliquent grâce à une classe attribuée à l'élément div contenant la console.
+Pour l'instant, seul trois styles de console sont implémenter, mais il serait aisé d'en ajouter d'autres dans des versions futures.
+Chaque style a une classe maîtresse \emph{.console-nom\_style}, et on redéfinit ensuite les classes \emph{jqconsole} grâce aux sélecteurs CSS. Voir le fichier \emph{console.css}.
 
 Tous ces changements sont pour l'instant uniquement gérer en local (voir fichier \emph{options.js}).
 
@@ -62,13 +61,12 @@ Tous ces changements sont pour l'instant uniquement gérer en local (voir fichie
 \end{figure}
 
 \subsection{Gestions des fichiers}
-Tel un véritable EDI, notre application permet la gestion de multiples fichiers. Cette gestion est effectué sur le navigateur, par du javascript.
+Tel un véritable EDI, notre application permet la gestion de multiples fichiers. Cette gestion est effectuée sur le navigateur par du javascript.
 
-Les fichiers sont enregistré dans un prototype contenant deux champs : \emph{name}, le nom du fichier, et \emph{content} son contenu. Ces prototype sont ensuite stockés dans la variable
-globale \emph{files}, un tableau de fichier. À chaque changement de fichier en cours d'édition, le contenu de l'éditeur est sauvegardé et ensuite remplacé par le contenu du nouveau fichier à éditer.
+Les fichiers sont enregistrés dans un prototype contenant deux champs : \emph{name}, le nom du fichier, et \emph{content} son contenu. Ces prototypes sont ensuite stockés dans la variable globale \emph{files}, un tableau de fichier. À chaque changement de fichier en cours d'édition, le contenu de l'éditeur est sauvegardé et est ensuite remplacé par le contenu du nouveau fichier à éditer.
 
-Les fichiers peuvent être créer de deux façon : soit en important un fichier depuis sont ordinateur (bouton importation), soit par création à partir de modèles défini par l'administrateur pour le langage.
-On laisse également la possibilté de créer des fichiers vides (par exemple pour créer un fichier de données utilisé lors de l'éxecution du programme).
+Les fichiers peuvent être créer de deux façons : soit en important un fichier depuis son ordinateur (bouton importation), soit par création à partir de modèles définis par l'administrateur pour le langage.
+On laisse également la possibilité de créer des fichiers vides (par exemple pour créer un fichier de données utilisé lors de l'exécution du programme).
 
 
 \section{Compilation et exécution}
@@ -78,30 +76,30 @@ On laisse également la possibilté de créer des fichiers vides (par exemple po
 
 \subsection{Lancement de la compilation et de l'exécution}
 
-Le lancement de la compilation et de l'éxecution du code écris est demandé par l'appuie sur le bouton "Lancer", qui appelle on fonction JS envoyant une requête AJAX
-vers la méthode ConsoleController::xecAction (fichier consoleController.php). Cette requête contient le formulaire, qui est ensuite traité : les fichiers vont être écris dans
-le système du fichier dans un dossier temporaire, le script de lancement et d'éxecution correspondant au langage est récupérer dans la base de donnée et placer dans ce même répertoire.
-Une commande qui va permettre de lancer le docker est ensuite construite. Cette commande va :
+Le lancement de la compilation et de l'exécution du code écrit est demandé par l'appui sur le bouton "Lancer" qui appelle une fonction JS envoyant une requête AJAX
+vers la méthode ConsoleController::execAction (fichier ConsoleController.php). Cette requête contient le formulaire qui est ensuite traité : les fichiers vont être écrits dans
+le système du fichier dans un dossier temporaire, le script de lancement et d'exécution correspondant au langage est récupéré dans la base de donnée et placé dans ce même répertoire.
+Une commande, qui va permettre de lancer le docker, est ensuite construite. Cette commande va :
 \begin{itemize}
   \item Stopper le container de l'utilisateur s'il existe.
-  \item{Lancer un container basé sur l'image correspondante au langage, de nom \emph{id\_[id\_user]A}, parametré pour être supprimer à la fin de l'exécution de la commande de lancement. Cette commande de lancement va :
+  \item{Lancer un container basé sur l'image correspondante au langage, de nom \emph{id\_[id\_user]A}, paramétré pour être supprimé à la fin de l'exécution de la commande de lancement. Cette commande de lancement va :
   \begin{itemize}
     \item Récupérer le script de lancement sur le serveur de l'application via un wget
-    \item Attribuer les droits d'éxecution sur ce script
-    \item Une commande sed remplaçant des caractères indésirable (du à la base de données).
-    \item Lancer le script avec les bons paramètres.
+    \item Attribuer les droits d'exécution sur ce script
+    \item Une commande sed remplaçant les caractères indésirables (dus à la base de données).
+    \item Lancer le script avec les bons paramètres
   \end{itemize}}
 \end{itemize}
 
-Les paramètre du script à lancer sont :
+Les paramètres du script à lancer sont :
 \begin{itemize}
-  \item -o 'options\_de\_compilation' pour les paramètres à passer au compilateur
-  \item -f 'fichier1 fichier2...'' la liste des fichiers de l'utilisateur (récupérer par un wget).
-  \item -i fichier le nom du fichier contenant les inputs si il est necessaire
-  \item -n pour un mode non interractif.
-  \item -a 'agr0 arg1 ...' les arguments à donner au programme
-  \item -c pour uniquement effectuer la compilation
-  \item -w 'wget\_adr' l'addresse où effectuer le wget.
+  \item -o 'options\_de\_compilation', pour les paramètres à passer au compilateur
+  \item -f 'fichier1 fichier2...'', la liste des fichiers de l'utilisateur (récupérée par un wget)
+  \item -i fichier, le nom du fichier contenant les inputs s'il est nécessaire
+  \item -n, pour un mode non interactif.
+  \item -a 'agr0 arg1 ...', les arguments à donner au programme
+  \item -c, pour uniquement effectuer la compilation
+  \item -w 'wget\_adr' l'adresse où effectuer le wget.
 \end{itemize}
 
 \subsection{Terminal}
