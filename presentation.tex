@@ -1,19 +1,28 @@
 \chapter{Présentation du projet}
 
-Intro\footnotemark\\
-%note en bas de page
-
 \par L'installation de compilateurs peut se montrer compliquée pour les étudiants novices qui suivent les cours d'initiation à la programmation. L'Université d'Angers a donc souhaité simplifier leur apprentissage en centralisant tous les besoins dans un outil de développement en ligne.
 
 \section{Sujet}
 %Présentation du sujet : entreprise, encadrement
-Bla\\
 
-\par Notre objectif était de réaliser un environnement de développement en ligne. Cet outil , qui serait utilisé essentiellement par les étudiants en première et deuxième année de licence à l'Université d'Angers, a pour intérêt principal de permettre l’écriture, la compilation et l’exécution de programme sans installation de compilateurs ou d'IDE préalable.
+\par Notre objectif était de réaliser la première version d'un environnement de développement simplifié accessible à partir d'un navigateur web. Il permet d'écrire et de compiler du code rapidement et simplement sans avoir à installer de compilateur sur le poste client (la compilation s'effectuant sur le serveur). Cet outil pourrait être utilisé, dans le cadre des enseignements à l'Université d'Angers, dans plusieurs unités dès la L1 jusqu'à la L3. \\
+
+\par Certaines caractéristiques nous étaient demandées : 
+
+\begin{itemize}
+
+	\item l'édition de code dans un éditeur proposant la coloration syntaxique
+	\item la possibilité de compiler le code depuis des compilateurs installés sur le serveur. Le logiciel devra prendre en compte différents langages afin d’être utilisable dans différentes UE
+	\item l'accès aux messages d'erreur de la compilation
+	\item l'exécution de l'application compilée sur le serveur avec affichage de la sortie
+	\item des fonctionnalités avancées devaient être développées telles que l’intégration du débogueur, une gestion plus poussée de l’ensemble de fichiers composant un projet, l'auto-complétion du code, l'intégration d’outils d’analyse
+
+\end{itemize}
+
 
 \section{Problématique soulevée}
 
-Sécurité au niveau du serveur
+\par L'application devant être intégrée aux serveurs de l'Université, nous nous devions de penser à la sécurité. Nous avons donc élaborer une architecture sécurisée afin d'éviter les failles. 
 
 \section{Choix des principaux outils et technologies}
 
@@ -21,4 +30,8 @@ Blabal symfony mariaDB Bootstrap Docker blablabla
 
 \section{Répartition des tâches}
 
-\par Afin de travailler efficacement, nous avons séparé le projet en 4 parties autonomes : l'interface graphique, l'administration, le serveur et la communication entre serveur et interface graphique.
+\par Afin de travailler efficacement, nous avons séparé le projet en 4 parties autonomes plus ou moins autonomes: Paulin s'est occupé de l'interface graphique, Yassine de l'administration, Jérôme de l'architecture du serveur et Valentine de la communication entre les serveurs.
+
+\subsection{Planning}
+
+Faire le planning
