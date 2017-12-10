@@ -51,9 +51,11 @@ La police est également personnalisable, permettant à chacun d'utiliser une ta
 
 La console ayant un style implementer par le css, il fut de même aisé de créer des thèmes qui s'applique grâce à une classe attribué à l'élement div contenant la console.
 Pour l'instant, seul trois style de console sont implémenter, mais il serait aisé d'en ajouté d'autre dans des versions future.
-Chaque style a une classe maitresse \emph{.console-nom\_style}, et on redéfini ensuite les classes \emph{jqconsole} grâce aux selecteurs css.
+Chaque style a une classe maitresse \emph{.console-nom\_style}, et on redéfini ensuite les classes \emph{jqconsole} grâce aux selecteurs css. Voir le fichier \emph{console.css}.
 
-\begin{figure}[!h]
+Tous ces changements sont pour l'instant uniquement gérer en local (voir fichier \emph{options.js}).
+
+\begin{figure}[!h]oir le fichier \emph{console.css}.
 \centering
 \includegraphics[width=0.8\textwidth]{./img/frontend/example_personnalisation.png}
 \caption{Formulaire permettant la personnalisation de l'interface}
@@ -70,11 +72,37 @@ On laisse également la possibilté de créer des fichiers vides (par exemple po
 
 
 \section{Compilation et exécution}
-Ce titre pu
 
 \subsection{Formulaire}
 
-SS de mon formulaire trop swag
+
+\subsection{Lancement de la compilation et de l'exécution}
+
+Le lancement de la compilation et de l'éxecution du code écris est demandé par l'appuie sur le bouton "Lancer", qui appelle on fonction JS envoyant une requête AJAX
+vers la méthode ConsoleController::xecAction (fichier consoleController.php). Cette requête contient le formulaire, qui est ensuite traité : les fichiers vont être écris dans
+le système du fichier dans un dossier temporaire, le script de lancement et d'éxecution correspondant au langage est récupérer dans la base de donnée et placer dans ce même répertoire.
+Une commande qui va permettre de lancer le docker est ensuite construite. Cette commande va :
+\begin{itemize}
+  \item Stopper le container de l'utilisateur s'il existe.
+  \item{Lancer un container basé sur l'image correspondante au langage, de nom \emph{id\_[id\_user]A}, parametré pour être supprimer à la fin de l'exécution de la commande de lancement. Cette commande de lancement va :
+  \begin{itemize}
+    \item Récupérer le script de lancement sur le serveur de l'application via un wget
+    \item Attribuer les droits d'éxecution sur ce script
+    \item Une commande sed remplaçant des caractères indésirable (du à la base de données).
+    \item Lancer le script avec les bons paramètres.
+  \end{itemize}}
+\end{itemize}
+
+Les paramètre du script à lancer sont :
+\begin{itemize}
+  \item -o 'options\_de\_compilation' pour les paramètres à passer au compilateur
+  \item -f 'fichier1 fichier2...'' la liste des fichiers de l'utilisateur (récupérer par un wget).
+  \item -i fichier le nom du fichier contenant les inputs si il est necessaire
+  \item -n pour un mode non interractif.
+  \item -a 'agr0 arg1 ...' les arguments à donner au programme
+  \item -c pour uniquement effectuer la compilation
+  \item -w 'wget\_adr' l'addresse où effectuer le wget.
+\end{itemize}
 
 \subsection{Terminal}
 
@@ -85,3 +113,7 @@ SS de mon formulaire trop swag
 \par Après étude de rentabilité, nous avons décidé d'implémenter la vue JQConsole \footnote{https://github.com/replit/jq-console} qui correspondait exactement à nos besoins. En plus d'être esthétique, son code source était placé sous licence libre et toutes les fonctions qui nous étaient nécessaires étaient déjà implémentées. L'inconvénient principal est que la modification du code source peut se montrer compliqué, celui-ci étant rédigé en CoffeeScript et étant assez compliqué.
 
 \par Nous n'avions donc plus qu'à intégrer la vue JQConsole à notre interface et faire appel aux bonnes fonctions (notamment JQConsole.Write qui permet d'afficher du texte dans la console et JQConsole.Prompt qui permet de lire du texte) pour obtenir notre console.
+
+\section{Problème rencontré et amélioration possible}
+
+\subsection{Rendre l'interface Responsive}
