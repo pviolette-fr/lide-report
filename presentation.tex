@@ -1,11 +1,11 @@
 \chapter{Présentation du projet}
 
-\par L'installation de compilateurs peut se montrer compliquée pour les étudiants novices qui suivent les cours d'initiation à la programmation. L'Université d'Angers a donc souhaité simplifier leur apprentissage en centralisant tous les besoins dans un outil de développement en ligne.
+\par L'installation de compilateurs peut se montrer compliquée pour les étudiants qui suivent les cours d'initiation à la programmation. L'Université d'Angers a donc souhaité simplifier leur apprentissage en centralisant tous les besoins dans un outil de développement en ligne.
 
 \section{Sujet}
 %Présentation du sujet : entreprise, encadrement
 
-\par Notre objectif était de réaliser la première version d'un environnement de développement simplifié accessible à partir d'un navigateur web. Il permet d'écrire et de compiler du code rapidement et simplement sans avoir à installer de compilateur sur le poste client (la compilation s'effectuant sur le serveur). Cet outil pourrait être utilisé, dans le cadre des enseignements à l'Université d'Angers, dans plusieurs unités dès la L1 jusqu'à la L3. \\
+\par Notre objectif était de réaliser la première version d'un environnement de développement simplifié accessible depuis un navigateur web. Il permet d'écrire et de compiler du code rapidement et simplement sans avoir à installer de compilateur sur le poste client (la compilation s'effectuant sur le serveur). Cet outil pourrait être utilisé, dans le cadre des enseignements à l'Université d'Angers, dans plusieurs unités dès la L1 jusqu'à la L3. \\
 
 \par Certaines caractéristiques nous étaient demandées :
 
@@ -27,14 +27,14 @@
 
 \section{Choix des principaux outils et technologies}
 \label{sec-principaux-outils}
-\par Lors de la première séance de concrétisation disciplinaire, nos chefs de projet nous ont proposé d'utiliser le framework Symfony \footnote{\url{https://symfony.com/}}pour la réalisation de notre application. Ce framework force à organiser le code et permet une gestion simple de la base de données qui ne dépend pas du type de base de données. De plus, Symfony permet une génération simple des pages grâce à ses controllers et au moteur de template twig.\
-Un autre avantage de Symfony est la possibilité d'utiliser des bundles (par exemple, FOSUserBundle permet la gestion des utilisateurs) qui simplifie et accélère véritablement la réalisation des projets. \\
+\par Lors de la première séance de concrétisation disciplinaire, nos chefs de projet nous ont proposé d'utiliser le framework Symfony \footnote{\url{https://symfony.com/}}pour la réalisation de notre application. Ce framework force à organiser le code et permet une gestion simple de la base de données qui ne dépend pas du type de celle-ci. De plus, Symfony permet une génération simple des pages grâce à ses controllers et au moteur de template twig.\
+Un autre avantage de Symfony est la possibilité d'utiliser des bundles (par exemple, FOSUserBundle permet la gestion des utilisateurs) qui simplifient et accélèrent véritablement la réalisation des projets. \\
 
-\par Nous avons décidé de placer sous licence libre notre application, c'est pourquoi nous avons choisi MariaDB\footnote{\url{https://mariadb.com/fr}} comme système de gestion de la base de données. De plus, MariaDB a l'avantage d'être légère. \\
+\par Nous avons décidé de placer sous licence libre notre application, c'est pourquoi nous avons choisi MariaDB\footnote{\url{https://mariadb.com/fr}} comme système de gestion de la base de données. De plus, MariaDB a l'avantage d'être un système léger. \\
 
-\par L'interface graphique a été réalisé grâce au framework Bootstrap qui fournit un thème de base cohérent et esthétique. Bootstrap\footnote{\url{https://getbootstrap.com/}} est simple à utiliser car il se base sur des classes CSS. \\
+\par L'interface graphique a été réalisée grâce au framework Bootstrap qui fournit un thème de base cohérent et esthétique. Bootstrap\footnote{\url{https://getbootstrap.com/}} est simple à utiliser car il se base sur des classes CSS. \\
 
-\par Le choix de la conteneurisation, et plus particulièrement Docker\footnote{\url{https://www.docker.com/}}, s'est vite imposé dans l'architecture du serveur. Docker est une méthode de conteneurisation légère qui permet de travailler toujours sur le même environnement (la même image est réutilisée autant de fois que nécessaire) et qui nous a permis d'isoler les compilations et exécutions des programmes.
+\par La conteneurisation, et plus particulièrement Docker\footnote{\url{https://www.docker.com/}}, s'est vite imposée dans l'architecture du serveur. Docker est une méthode de conteneurisation légère qui permet de travailler toujours sur le même environnement (la même image est réutilisée autant de fois que nécessaire) et qui nous a permis d'isoler les compilations et exécutions des programmes.
 
 \section{Répartition des tâches}
 
