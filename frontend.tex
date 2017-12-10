@@ -14,12 +14,12 @@
   \label{}
 \end{figure}
 
-Une fois l'utilisateur connecté, il est redirgigé vers l'interface de l'application : un éditeur de texte et une console.
+Une fois l'utilisateur connecté, il est redirigé vers l'interface de l'application : un éditeur de texte et une console.
 L'interface est divisée en quatre parties :
 \begin{itemize}
   \item La barre de navigation, contenant les liens vers les autres parties du site (gestion de compte...)
   \item La barre d'outils, qui contient des contrôles spécifiques à l'application
-  \item L'editeur, implémenté par le plugin Ace
+  \item L'éditeur, implémenté par le plugin Ace
   \item La console, implémentée par le plugin jqconsole
 \end{itemize}
 
@@ -28,22 +28,24 @@ L'interface est divisée en quatre parties :
 %SweetAlert2 pour les alertes trop swag
 %JQConsole vite zef parceque c'est valou qui l'a fait
 
-En plus des outils déjà décris dans la \ref{sec-principaux-outils}, l'interface utilisateurs utilise plusieurs plugins Javascript.
+En plus des outils déjà décrits dans la section \ref{sec-principaux-outils}, l'interface utilisateur utilise plusieurs plugins Javascript.
 
-L'éditeur de texte est Ace\footnote{Voir \url{https://ace.c9.io/}} est un éditeur de texte pour le web supportant la coloration syntaxique sur près de 110 langages, mis à disposition sous licence BSD, et maintenue comme le principal éditeur pour l'IDE AWS Cloud9. Cet éditeur a pour avantage de supporter de nombreuses fonctionnalité, parmis lesquels :
-\\begin{itemize}
+L'éditeur de texte est Ace\footnote{Voir \url{https://ace.c9.io/}}, un éditeur de texte pour le web supportant la coloration syntaxique de près de 110 langages, mis à disposition sous licence BSD et maintenu comme le principal éditeur pour l'IDE AWS Cloud9. Cet éditeur a pour avantage de supporter de nombreuses fonctionnalités, parmi lesquelles :
+\
+
+\begin{itemize}
   \item L'indentation automatique
   \item Chercher/Remplacer avec des expressions régulières
   \item Changement entre tabulation avec des espaces ("soft tab") ou avec une réelle tabulation (caractère \\t, "hard tab").
   \item Numérotage des lignes
-  \item Et bien d'autre...
+  \item Et bien d'autres...
 \end{itemize}
 
-Toute ces raisons nous ont poussé à choisir d'utiliser ce plugin.
+Toutes ces raisons nous ont poussés à utiliser ce plugin.
 
-Afin de gérer la console, nous avons choisi d'utiliser le plugin jqconsole (Plus de détail en \ref{seubsec-terminal}).
+Afin de gérer la console, nous avons choisi d'utiliser le plugin jqconsole (Plus de détails en \ref{subsec-terminal}).
 
-Dernièrement, pour afficher les alertes relatif à l'interface, nous utilisons le plugin SweetAlert2\footnote{Voir \url{https://limonte.github.io/sweetalert2/}} qui nous permet d'avoir des alertes personnalisable et bien plus esthétique que les alertes classiques.
+Dernièrement, pour afficher les alertes relatives à l'interface, nous utilisons le plugin SweetAlert2\footnote{Voir \url{https://limonte.github.io/sweetalert2/}} qui nous permet d'avoir des alertes personnalisables et bien plus esthétiques que les alertes classiques.
 
 \subsection{Organisation des templates TWIG}
 
@@ -54,13 +56,13 @@ Blabla DB changement de langage
 
 \subsection{Personnalisation}
 
-Toute personne ayant travaillé en groupe sur un projet informatique a pu remarquer que chacun à ses préférences de thème pour un éditeur : certains préfèrent un fond sombre, d'autres un fond clair, etc... L'éditeur Ace est facilement personnalisable et dispose, par défaut, de 24 thèmes. Il était donc assez rapide d'implémenter un formulaire permettant à l'utilisateur de choisir le thème qui lui convient le mieux, lui permettant ainsi de facilement s'approprier son outil de travail.
+Toute personne ayant déjà travaillé en groupe sur un projet informatique a pu remarquer que chacun à ses préférences de thème pour un éditeur : certains préfèrent un fond sombre, d'autres un fond clair, etc... L'éditeur Ace est facilement personnalisable et dispose, par défaut, de 24 thèmes. Il était donc assez rapide d'implémenter un formulaire permettant à l'utilisateur de choisir le thème qui lui convient le mieux, lui permettant ainsi de facilement s'approprier son outil de travail.
 
 La police est également personnalisable, permettant à chacun d'utiliser une taille de police qui lui convient.
 
-La console ayant un style implémenter par le CSS, il fut de même aisé de créer des thèmes qui s'appliquent grâce à une classe attribuée à l'élément div contenant la console. Pour l'instant, seul trois styles de console sont implémenter, mais il serait aisé d'en ajouter d'autres dans des versions futures. Chaque style a une classe maîtresse \emph{.console-nom\_style}, et on redéfinit ensuite les classes \emph{jqconsole} grâce aux sélecteurs CSS. Voir le fichier \emph{console.css}.
+La console ayant un style implémenté par CSS, il fut de même aisé de créer des thèmes qui s'appliquent grâce à une classe attribuée à l'élément div contenant la console. Pour l'instant, seuls trois styles de console sont implémentés, mais il serait aisé d'en ajouter d'autres dans des versions futures. Chaque style a une classe maîtresse \emph{.console-nom\_style}. On redéfinit ensuite les classes \emph{jqconsole} grâce aux sélecteurs CSS (voir le fichier \emph{console.css}).
 
-Tous ces changements sont pour l'instant uniquement gérer en local (voir fichier \emph{options.js}).
+Tous ces changements sont pour l'instant uniquement gérés en local (voir fichier \emph{options.js}).
 
 \begin{figure}[!h]
 \centering
@@ -81,25 +83,25 @@ On laisse également la possibilité de créer des fichiers vides (par exemple p
 
 \subsection{Formulaire}
 
-Le formulaire pour compiler et exécuter est un formulaire génerer par symfony à partir de l'entity \texttt{Execution} et de la classe \texttt{ExecutionType}. Le formulaire comporte 7 champs :
+Le formulaire pour compiler et exécuter est généré par Symfony à partir de l'entity \texttt{Execution} et de la classe \texttt{ExecutionType}. Le formulaire comporte 7 champs :
 \begin{itemize}
-  \item Les paramètres de compilations : arguments passé au compilateurs.
-  \item Les paramètres de lancement : arguments données au programme.
-  \item Fichiers additionnels : l'utilisateur peut choisir des fichiers depuis son ordinateurs qui seront join au fichiers présents dans l'IDE.
-  \item Une options Compilation Uniquement : si activer, seul la compilation sera effectuée, le programme ne sera pas lancé.
+  \item Les paramètres de compilations : arguments passés au compilateurs
+  \item Les paramètres de lancement : arguments donnés au programme
+  \item Fichiers additionnels : l'utilisateur peut choisir des fichiers depuis son ordinateurs qui seront joints aux fichiers présents dans l'IDE
+  \item Une option Compilation Uniquement : si activée, seule la compilation sera effectuée; le programme ne sera pas lancé
   \item{ Un choix de gestion du flux d'entrée :
   \begin{itemize}
-    \item Aucun : aucune gestion des entrées n'est effectué.
-    \item Interractive : entrée interractive, l'utilisateur écris sur le flux d'entrée au fur et à mesure de l'éxecution du programme.
-    \item Texte : les entrées sont défini à l'avance, le programme utilise un fichier comme flux d'entrée.
+    \item Aucun : aucune gestion des entrées n'est effectuée
+    \item Interactive : entrée interactive, l'utilisateur écrit sur le flux d'entrée au fur et à mesure de l'exécution du programme.
+    \item Texte : les entrées sont définie à l'avance, le programme utilise un fichier comme flux d'entrée.
   \end{itemize}}
-  \item Les entrées à données au programme : seulement si le mode de gestion des entrées Texte est sélectionné.
+  \item Les entrées à donner au programme : seulement si le mode de gestion des entrées Texte est sélectionné.
   \item Un champs caché alimenté par le javascript, contenant le JSON correspondant à la liste des fichiers.
 \end{itemize}
 
 \subsection{Lancement de la compilation et de l'exécution}
 
-Le lancement de la compilation et de l'exécution du code écrit est demandé par l'appui sur le bouton "Lancer" qui appelle une fonction JS envoyant une requête AJAX vers la méthode \texttt{ConsoleController::execAction} (fichier ConsoleController.php). Cette requête contient le formulaire qui est ensuite traité : les fichiers vont être écrits dans le système du fichier dans un dossier temporaire, le script de lancement et d'exécution correspondant au langage est récupéré dans la base de donnée et placé dans ce même répertoire. Une commande, qui va permettre de lancer le docker, est ensuite construite. Cette commande va :
+Le lancement de la compilation et de l'exécution du code écrit est lancé par l'appui sur le bouton "Lancer" qui appelle une fonction JS envoyant une requête AJAX vers la méthode \texttt{ConsoleController::execAction} (fichier ConsoleController.php). Cette requête contient le formulaire qui est ensuite traité : les fichiers vont être écrits dans le système du fichier dans un dossier temporaire, le script de lancement et d'exécution correspondant au langage est récupéré dans la base de données et placé dans ce même répertoire. Une commande, qui va permettre de lancer le docker, est ensuite construite. Cette commande va :
 \begin{itemize}
   \item Stopper le container de l'utilisateur s'il existe.
   \item{Lancer un container basé sur l'image correspondante au langage, de nom \emph{id\_[id\_user]A}, paramétré pour être supprimé à la fin de l'exécution de la commande de lancement. Cette commande de lancement va :
@@ -127,9 +129,9 @@ Les paramètres du script à lancer sont :
 
 \par La mise en place de la console proposait deux options : soit la création d'une vue ad-hoc soit l'intégration d'une vue déjà existante.
 
-\par Notre choix s'est vite tourné vers l'intégration d'une vue déjà existante. La création d'une vue nous aurait certes donné une modularité de la console en ce qui concerne les modifications mais, la console une fois implémentée n'a pas nécessairement besoin de mofications.
+\par Notre choix s'est vite tourné vers l'intégration d'une vue déjà existante. La création d'une vue nous aurait certes donné une modularité de la console en ce qui concerne les modifications mais, la console une fois implémentée n'a pas nécessairement besoin de modifications.
 
-\par Après étude de rentabilité, nous avons décidé d'implémenter la vue JQConsole \footnote{https://github.com/replit/jq-console} qui correspondait exactement à nos besoins. En plus d'être esthétique, son code source était placé sous licence libre et toutes les fonctions qui nous étaient nécessaires étaient déjà implémentées. L'inconvénient principal est que la modification du code source peut se montrer compliqué, celui-ci étant rédigé en CoffeeScript et étant assez compliqué.
+\par Après étude de rentabilité, nous avons décidé d'implémenter la vue JQConsole \footnote{https://github.com/replit/jq-console} (utilisée dans repl.it\footnote{\url{https://repl.it/}}, un projet similaire au nôtre) qui correspondait exactement à nos besoins. En plus d'être esthétique, son code source était placé sous licence libre et toutes les fonctions qui nous étaient nécessaires étaient déjà implémentées. L'inconvénient principal est que la modification du code source peut se montrer compliqué, celui-ci étant rédigé en CoffeeScript et étant assez compliqué.
 
 \par Nous n'avions donc plus qu'à intégrer la vue JQConsole à notre interface et faire appel aux bonnes fonctions (notamment JQConsole.Write qui permet d'afficher du texte dans la console et JQConsole.Prompt qui permet de lire du texte) pour obtenir notre console.
 
