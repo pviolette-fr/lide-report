@@ -49,6 +49,10 @@ Dernièrement, pour afficher les alertes relatives à l'interface, nous utilison
 
 \subsection{Organisation des templates TWIG}
 
+Le template twig de l'application, \texttt{index.html.twig}, hérite du template \texttt{layout.html.twig}, qui défini une base pour l'application, et qui contient la barre de navigation. Nous avons également créer differents templates pour les modales d'options (de personnalisation, de lancement, d'importation et de création de fichier).
+
+Les templates du bundle FOS (gérant la partie utilisateur du site) sont également redéfini pour s'integrer avec le reste de l'application.
+
 \section{Environnement de Développement}
 
 \subsection{Gestions des langages}
@@ -138,5 +142,8 @@ Les paramètres du script à lancer sont :
 \section{Problème rencontré et amélioration possible}
 
 \subsection{Rendre l'interface Responsive}
+Un des problèmes de l'interface actuelle est son manque d'adaptibilité sur les plus petits écran, le design actuelle n'ayant pas été conçu dans le bu de répondre à cette problématique, principalement du au manque d'expèrience en web, qui nous a mené à aller plus vite vers quelque chose de fonctionnelle sur ordinateur que sur les platforme mobile aux écran plus petits. C'est une amélioration qu'il serait souhaitable de réaliser dans un version future.
 
-\subsection{Persistance des options de personnalisation en base de données}
+\subsection{Persistance des options de personnalisation et de compilation}
+
+Actuellement, la persistances des options de compilation ou de personnalisation n'est pas assuré. Cette fonctionnalité n'a pas été implémenter principalement par manque de temps, mais pourrait rapidement être implémenté en ajoutant les champs necessaire dans la base de données, afin de lié ces préferences à un utilisateur, et en implémentant renvoyant les choix effectué dans le formulaire de personnalisation au serveur via une requête AJAX, afin que ces choix soit sauvegardé en base de donnée.
