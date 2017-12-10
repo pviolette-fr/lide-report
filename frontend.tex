@@ -24,15 +24,26 @@ L'interface est divisée en quatre parties :
 \end{itemize}
 
 \section{Outils utilisés}
-
-%Blabla HTML/CSS/JS, generateur de template twig, Framework bootstrap
-%Utilisation de jquery
 %Editeur ace
 %SweetAlert2 pour les alertes trop swag
 %JQConsole vite zef parceque c'est valou qui l'a fait
 
-Du coté du serveur, la génération de la page se fait grâce à symfony via le DefaultController et le moteur de template Twig. Cela nous permet de génerer la page en fonction des informations présentent dans la Base de Données
+En plus des outils déjà décris dans la \ref{sec-principaux-outils}, l'interface utilisateurs utilise plusieurs plugins Javascript.
 
+L'éditeur de texte est Ace\footnote{Voir \url{https://ace.c9.io/}} est un éditeur de texte pour le web supportant la coloration syntaxique sur près de 110 langages, mis à disposition sous licence BSD, et maintenue comme le principal éditeur pour l'IDE AWS Cloud9. Cet éditeur a pour avantage de supporter de nombreuses fonctionnalité, parmis lesquels :
+\\begin{itemize}
+  \item L'indentation automatique
+  \item Chercher/Remplacer avec des expressions régulières
+  \item Changement entre tabulation avec des espaces ("soft tab") ou avec une réelle tabulation (caractère \\t, "hard tab").
+  \item Numérotage des lignes
+  \item Et bien d'autre...
+\end{itemize}
+
+Toute ces raisons nous ont poussé à choisir d'utiliser ce plugin.
+
+Afin de gérer la console, nous avons choisi d'utiliser le plugin jqconsole (Plus de détail en \ref{seubsec-terminal}).
+
+Dernièrement, pour afficher les alertes relatif à l'interface, nous utilisons le plugin SweetAlert2\footnote{Voir \url{https://limonte.github.io/sweetalert2/}} qui nous permet d'avoir des alertes personnalisable et bien plus esthétique que les alertes classiques.
 
 \subsection{Organisation des templates TWIG}
 
@@ -112,6 +123,7 @@ Les paramètres du script à lancer sont :
 \end{itemize}
 
 \subsection{Terminal}
+\label{subsec-terminal}
 
 \par La mise en place de la console proposait deux options : soit la création d'une vue ad-hoc soit l'intégration d'une vue déjà existante.
 
