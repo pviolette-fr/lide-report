@@ -22,12 +22,19 @@
 
 \section{Problématique soulevée}
 
-\par L'application devant être intégrée aux serveurs de l'Université, nous nous devions de penser à la sécurité. Nous avons donc élaborer une architecture sécurisée afin d'éviter les failles. 
+\par L'enjeu principal de ce projet était la sécurité du serveur. En effet, lorsqu'un étudiant tente d'exécuter un programme qui contient des erreurs ou qui demande trop de mémoire CPU, il ne faut pas que le serveur qui gère l'exécution ni les exécutions d'autres étudiants soient ralentis ou bloqués. Pour pallier ces problèmes, nous nous devions d'élaborer une architecture sécurisée afin d'éviter les failles.
 
 
 \section{Choix des principaux outils et technologies}
 
-Blabal symfony mariaDB Bootstrap Docker blablabla
+\par Lors de la première séance de concrétisation disciplinaire, nos chefs de projet nous ont proposé d'utiliser le framework Symfony pour la réalisation de notre application. Ce framework force à organiser le code et permet une gestion simple de la base de données qui ne dépend pas du type de base de données. De plus, Symfony permet une génération simple des pages grâce à ses controllers et au moteur de template twig.\
+Un autre avantage de Symfony est la possibilité d'utiliser des bundles (par exemple, FOSUserBundle permet la gestion des utilisateurs) qui simplifie et accélère véritablement la réalisation des projets. \\
+
+\par Nous avons décidé de placer sous licence libre notre application, c'est pourquoi nous avons choisi MariaDB comme système de gestion de la base de données. De plus, MariaDB a l'avantage d'être légère. \\
+
+\par L'interface graphique a été réalisé grâce au framework Bootstrap qui fournit un thème de base cohérent et esthétique. Bootstrap est simple à utiliser car il se base sur des classes CSS. \\
+
+\par Le choix de la conteneurisation, et plus particulièrement Docker, s'est vite imposé dans l'architecture du serveur. Docker est une méthode de conteneurisation légère qui permet de travailler toujours sur le même environnement (la même image est réutilisée autant de fois que nécessaire) et qui nous a permis d'isoler les compilations et exécutions des programmes.
 
 \section{Répartition des tâches}
 

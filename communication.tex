@@ -35,6 +35,10 @@
 
 \par L'inconvénient de cette implémentation est que l'application doit récupérer la réponse du docker juste après lui avoir envoyé le message. Pour se faire, le service attend 2 secondes avant de retourner une valeur. Des problèmes apparaissent dès que l'exécution met trop de temps à répondre.
 
+\par Cette implémentation est très critiquable et sera totalement modifiée dans la prochaine version de l'application.
+
+\subsubsection{Solution à adopter}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{./img/communication/newcomoutput.png}
@@ -47,4 +51,6 @@
 \caption{Envoi des inputs dans la future communication}
 \end{figure}
 
-\par Cette implémentation est très critiquable et sera totalement modifiée dans la prochaine version de l'application. Il faudra alors faire en sorte que le client envoie en continu des demandes d'outputs. Les inputs seront envoyées et n'attendront pas de réponse. Elles seront prises en compte par le conteneur seulement si celui-ci attend un message de l'utilisateur.
+\par Dans la future version de l'application, il faudra en sorte que le client envoie en continu des demandes d'outputs.
+
+ Il faudra alors faire en sorte que le client envoie en continu des demandes d'outputs. Les inputs seront envoyées et n'attendront pas de réponse. Elles seront prises en compte par le conteneur seulement si celui-ci attend un message de l'utilisateur.
