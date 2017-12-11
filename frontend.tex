@@ -60,7 +60,7 @@ Les templates du bundle FOS (gérant la partie utilisateur du site) sont égalem
 Une des contraintes données pour le projet était d'avoir un éditeur disponsant d'une coloration syntaxique, et pouvant supporter plusieurs langage, et pouvoir ensuite compilé (si besoin) et éxectué le code écris dans ces langages. Il a donc fallu penser l'interface pour répondre à cette problèmatique.
 
 %TODO
-Une liste des langages configuré est stocké dans la base de données, comme vu dans la section INSER_REF_BD. La page est donc génerer à partir de ces informations : un menu déroulant est inséré dans la barre de navigation, avec un choix pour chacun des langages marqué comme actif. Le langage selectionné est marqué via la classe css \texttt{.choix-langage-selected}, qui cache le lien dans le menu déroulant. Lors du chargement de la page, ou à la selection d'un autre langage, un requête AJAX est effectué afin de récupérer les informations sur le langage selectionné :
+Une liste des langages configuré est stocké dans la base de données, comme vu dans la section INSERT\_REF\_BD. La page est donc génerer à partir de ces informations : un menu déroulant est inséré dans la barre de navigation, avec un choix pour chacun des langages marqué comme actif. Le langage selectionné est marqué via la classe css \texttt{.choix-langage-selected}, qui cache le lien dans le menu déroulant. Lors du chargement de la page, ou à la selection d'un autre langage, un requête AJAX est effectué afin de récupérer les informations sur le langage selectionné :
 \begin{itemize}
   \item le mode de l'éditeur (on appelle ensuite la méthode \texttt{setMode(mode)} sur l'éditeur Ace.
   \item la liste des modèles configurés pour le langage (avec l'extension et le contenu du modèle).
