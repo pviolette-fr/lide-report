@@ -29,7 +29,7 @@
 %Pour les galerie d'images
 \usepackage{subfig}
 %pour le glossaire
-\usepackage[automake]{glossaries}
+\usepackage[toc,automake]{glossaries}
 
 %====================== INFORMATION ET REGLES ======================
 
@@ -52,6 +52,7 @@ pdfstartview={FitH}}                    % ajuste la page à la largueur de l'éc
 
 %======================== DEBUT DU DOCUMENT ========================
 
+\glstoctrue
 \makeglossaries
 \input{./lexique.tex}
 
@@ -101,9 +102,10 @@ pdfstartview={FitH}}                    % ajuste la page à la largueur de l'éc
 \input{./conclusion.tex}
 
 \appendix
+\printglossaries
 \input{./annexe.tex}
 
-\printglossaries
+
 
 %choix du style de la biblio
 %\bibliographystyle{plain}
