@@ -1,3 +1,52 @@
 \chapter{Serveur}
 
 \section{Architecture}
+
+\par Afin de garantir la bonne compréhension des différents thermes techniques qui vont suivre un lexique donnant toutes les définitions nécessaire est disponible en annexe,
+
+\par L’application web vise à être utilisé par des étudiants, pour ce faire certaines conditions de sécurité doivent être respectées. Les différents programmes doivent pouvoir être lancer sur un environnement vierge indépendant et bien sur isolé du serveur d’exécution afin de prévenir toute corruption de données ou problème de sécurité. Pour répondre a cette problématique, nous nous somme tournée vers une technique encore jeune et prometteuse : La conteneurisations. Cette technique peut être utilisé via différentes technologie nous avons choisie l’un des leader du marche : docker.
+
+\par Docker est une technologie en renouvellement permanent, nous avons choisie celle-ci plutôt qu’une autre pour plusieurs raisons. C’est l’une des technique enseigner en option dans notre cursus à l’université danger mais elle est aussi l’une des plus accessible et documenté. La communauté de cette dernière est très importante celas nous donné aussi l’avantage de complété nos cours en trouvant des solutions à des problème régulier sur des forums, tuto et autre outils communautaires.
+
+\par La conteneurisation répond a nos critères d’environnement puisqu’elle permet de crée un espace propre indépendant et sans incidence sur l’environnement qui héberge le service pour chaque exécutions. Grâce a cette technique nous avons pu gérer les problèmes de sécurité et d’allocation de ressource. Nous avons choisit la conteneurisation plutôt que les machines virtuel car elle ont l’avantage d’être plus légère mais aussi plus malléable.  
+
+\par Actuellement l’architecture du site se fait en plusieurs étapes nous avons une architecture mise en place a l’heure actuelle ( version béta ) et une architecture définitive avec plusieurs point nécessitant une étude de produit plus poussé pour la mise en place de l’architecture définitive 
+
+\subsection{Architecture actuelle du site}
+
+\par Actuellement le site utilise deux serveur : un serveur pour l’hébergement du site et un autre pour l’exécution des différent programme crée par les étudiants. Docker permet de crée des conteneur effemaire sans persistance de donnée a partir d’une image officiel (présentes dans le catalogue de docker) ou d’une image personnel générer a partir d’un dockerfile de cette manière, les docker file sont envoyé tout les jours au serveur et les images sont générer tout les jours afin de s’assurer de la bonne version de ces dernières. Chaque langage utilisé par les étudiant utilise une image unique qui lui est propre, de cette façon les images sont plus légère, plus rapide la génération et ne possède que les paquets et application nécessaire au bon fonctionnement du langage utilisé. Pour la version beta du site la communication entre l’application web et le serveur d ‘exécution s’effectue par ssh. Cette connexion permet l’ envoie des instructions  d’ exécution du conteneur et la manière pour récupérer le fichier a compiler générer par l’application web, de cette manière la gestion et la créations des conteneur et dynamique afin de coller au besoin de l’étudiant tout en restant transparant pour ce denier. 
+
+\par Les problèmes rencontrés : Afin de coller a tout les besoins explicite du client mais aussi d’optimiser  la sécurité et accessibilité , l’architecture initiale du site à du être diviser en deux étapes : une architecture basique avec la mise en place d’un système de conteneur et une communication temporaire. L’architecture temporaire a été pensé afin de minimiser les changement pour le passage à l’architecture final. La communication à poser des soucis notamment l’ouverture d’une socket ssh qui vient crée le container et ne laisse pas l’étudiant accéder au serveur mais uniquement le container.
+
+\subsection{Architecture finale}
+
+\par Le client a éprouvé le besoin de pouvoir utiliser plusieurs serveurs réparties sur tout le territoire pour les exécution des programmes avec un système de load balancing pour répartir les charges.
+Cette architecture a été pensé afin de répondre a cette question , d’assuré une haute disponibilité et de respecter la bonne utilisation des principes de docker.
+
+\par Dans sa version final l’application n’auras plus besoin d’un serveur d’hébergement, l’application entière seras conteneuriser sous forme de service, un service pour la partie web, un service pour la base de donnée. L’exécution des conteneur se feras aussi sous forme de services. Cette façons de faire donne plusieurs avantages : 
+
+\par L’application seras accessible en haute disponibilité, en effet de cette façon les différents service pourront posséder un certain nombre de répliques et pourras gérer le loadbalancing. Docker gérera la synchronisation des différents réplique de façon automatique. Aussi si l’une des réplique n’est plus active un autre est automatiquement crée de cette façon même si un serveur vient a tomber l’application ne seras pas impacter. Passer tout l’application sous forme de service permet également de crée un composerfile. Ce fichier permet de lancer les différents service de l’application en même temps mais également de paramétrer ces derniers cela permet d’être sur que tout les services sont lancer et on la bonne configuration, cela permet également de garder un trace au fil des versions.
+
+\par Un essaim docker va être mis en place. Tout les serveur utilisé par l’application feront partie de l’essaim cela permettre de lié les serveur entre eux afin de de mettre en place le load balancing.
+
+\par La mise en place d’une telle structure soulèves plusieurs questions.
+
+	\subsubsection{Quelle est la configuration des différents serveur ?} 
+
+Docker est une technologie dite portable mais comme évoquer plus haut cette technologie est encore jeune et possède pas mal de limite pour le moment. Pour assurer un fonctionnement identique et sans problèmes des image entre plusieurs serveur, il faut que ces dernières ai la même configuration ( même version de docker, même kernel, et même configuration système que docker pourrai exploiter par exemple la prise en charge de la mémoire swap) 
+
+	\subsubsection{Comment gérer la communication des conteneur entre les différents serveur sur des réseaux différents ?} 
+
+En effets docker gère les réplique des service ainsi que les différents service ssh et le reverse proxy cependant si les serveur ne sont pas sur le même réseau la communication peut vite devenir un problème. Comment assurer la sécurité ? Comment priorisé le serveur le plus proche physiquement afin de limiter la communication et avoir une vitesse maximum ?Faut-il mettre en place un serveur de communication entre les services au travers des serveur de l’essaim  ? Le principe de communication vers un conteneur a travers un service sur un essaim reste encore assez flou a l’heure actuel avec docker. 
+
+	\subsubsection{Quelle service utilisé pour mettre en place l’essaim et le load balancing ?}
+
+\par A l’heure actuelle, deux alternatives dominent le marché : Kubernetes et Docker swarm, Nous avons tenter de mettre en place docker swarm mais plusieurs problèmes nous sont apparue : deux façons de faire sont possible ajouter les serveurs directement a l’essaim ou crée des machines-docker sur les serveur que l’on ajoute ensuite. Les machines docker  permettent de crée un sous réseau par hôte et d’améliorer la sécurité. Une fois les services définit et l’essaim en place nous nous somme rendu compte que la communication entre les service n’était pas aussi aiser que ce que l’on pouvez penser.   Après avoir éplucher la documentation de docker au sujet des essaim nous nous somme aperçus que la communication inter-service via l’essaim n’est pas répandu et assez complexe. La mise en place d’un réseaux de communication via Consul a été essayer mais le temps restant ne nous a pas permis d’aller au bout de cette essais ni de l’étudier en profondeur. Ces différent problèmes on remis en cause l’utilisation de docker swarm. Une étude des capacité de docker swarm et de kurbernetes est nécessaire afin de déterminer laquel des deux technologie est la plus à même de répondre à nos besoins.
+
+\subsubsection{Les plus de cette architecture}
+
+\par Cette architecture permet de définir notre application en micro service avec une charge répartit sur plusieurs serveurs. Celas permet de rajouter des ressources au besoin. Elle permet d’avoir une application en haute disponibilité : la gestion des micro service permet de minimiser la panne en cas de problème sur l’un ou l’autre des micro service mais permet également le réplicas sur les serveur de façons a ne pas avoir de coupure si l’un des serveur n’est pas disponible. Les conteneur permette d’avoir une sécurité supplémentaire a l’aide de sous réseaux et d’environnement sans impacte sur le serveur d’exécution. L’utilisation de micro service avec un orchestrateur de container tel que Kubernetes ou docker swarm permet d’avoir une grande partie de la communication et de la sécurité gérer par ce dernier.   
+
+\subsection{Problèmes rencontrés} 
+
+Les différentes configurations de sécurité du réseau de l’université d’Angers nous ont donné beaucoup de mal notamment au niveaux des containeur qui ne supporte pas le proxy de l’université. L’utilisation des service ssh etant bloqué il a également été complique de mette en place la connexion ssh de la version beta de l’application. 
