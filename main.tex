@@ -28,6 +28,8 @@
 \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
 %Pour les galerie d'images
 \usepackage{subfig}
+%pour le glossaire
+\usepackage[automake]{glossaries}
 
 %====================== INFORMATION ET REGLES ======================
 
@@ -50,7 +52,13 @@ pdfstartview={FitH}}                    % ajuste la page à la largueur de l'éc
 
 %======================== DEBUT DU DOCUMENT ========================
 
+\makeglossaries
+\input{./lexique.tex}
+
 \begin{document}
+
+
+
 
 %régler l'espacement entre les lignes
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
@@ -91,13 +99,11 @@ pdfstartview={FitH}}                    % ajuste la page à la largueur de l'éc
 \input{./communication.tex}
 \input{./frontend.tex}
 \input{./conclusion.tex}
+
 \appendix
 \input{./annexe.tex}
-\input{./lexique.tex}
-\newpage
 
-%récupérer les citation avec "/footnotemark"
-\nocite{*}
+\printglossaries
 
 %choix du style de la biblio
 %\bibliographystyle{plain}

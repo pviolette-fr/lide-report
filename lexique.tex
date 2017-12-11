@@ -1,13 +1,35 @@
-\chapter{Lexique}
+\newglossaryentry{conteneur}
+{
+  name={conteneur},
+  description={est une instance d’éxecution d’une image docker, il se compose d’une image docker d’un environement d’éxecution et d’un ensemble d’instruction.}
+}
 
-\par conteneur : un containeur et une instance d’éxecution d’une image docker, il se compose d’une image docker d’un environement d’éxecution et d’un ensemble d’instruction.
+\newglossaryentry{essaim}
+{
+  name={essaim},
+  description={est un ensemble de plusieurs hôte docker paramétrer pour fonctionner ensemble}
+}
 
-\par essaim : un essaim est un ensemble de plusieurs hôte docker paramétrer pour fonctionner ensemble 
+\newglossaryentry{dockerfile}
+{
+  name={Dockerfile},
+  description={est un fichier dans lequel nous venons définir notre image à venir  a l’aide de mot clef, il définit le système ainsi que la configuration de ce dernier et les différentes commande a effectuer sur le système si nécessaire }
+}
 
-\par docker machine : Machine et un outil permettant la création d’hôte docker 
+\newglossaryentry{dockermachine}
+{
+  name=Docker machine,
+  description={est un outil permettant la création d’hôte docker }
+}
 
-\par Dockerfile : le Dockerfile est un fichier dans lequel nous venons définir notre image à venir  a l’aide de mot clef, il définit le système ainsi que la configuration de ce dernier et les différentes commande a effectuer sur le système si nécessaire 
+\newglossaryentry{service}
+{
+  name=service,
+  description={est la définition de la façon dont on exécuter les conteneurs d'application dans un essaim. Au niveau le plus élémentaire, un service définit l'image du conteneur à exécuter dans l'essaim et les commandes à exécuter dans le conteneur. Un service est souvent un microservice dans le cadre d'une application plus importante}
+}
 
-\par service : Un service est la définition de la façon dont on exécuter les conteneurs d'application dans un essaim. Au niveau le plus élémentaire, un service définit l'image du conteneur à exécuter dans l'essaim et les commandes à exécuter dans le conteneur. Un service est souvent un microservice dans le cadre d'une application plus importante.
-
-\par docker compose : Compose est un outil pour définir et exécuter des applications complexes. Il permet de définir  une application multi-conteneur dans un seul fichier. Il permet de lancer cette dernière en une seule commanSde qui fait tout ce qui doit être fait pour l'exécuter.
+\newglossaryentry{dockercompose}
+{
+  name=Docker compose,
+  description={est un outil pour définir et exécuter des applications complexes. Il permet de définir  une application multi-conteneur dans un seul fichier. Il permet de lancer cette dernière en une seule commande qui fait tout ce qui doit être fait pour l'exécuter}
+}

@@ -1,0 +1,180 @@
+\ifglsentryexists{conteneur}{}%
+{%
+\gls@defglossaryentry{conteneur}%
+{%
+name={Conteneur},%
+sort={Conteneur},%
+type={main},%
+first={Conteneur},%
+firstplural={Conteneurs},%
+text={Conteneur},%
+plural={Conteneurs},%
+description={est une instance d’éxecution d’une image docker, il se compose d’une image docker d’un environement d’éxecution et d’un ensemble d’instruction.},%
+descriptionplural={est une instance d’éxecution d’une image docker, il se compose d’une image docker d’un environement d’éxecution et d’un ensemble d’instruction.},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{essaim}{}%
+{%
+\gls@defglossaryentry{essaim}%
+{%
+name={Essaim},%
+sort={Essaim},%
+type={main},%
+first={Essaim},%
+firstplural={Essaims},%
+text={Essaim},%
+plural={Essaims},%
+description={est un ensemble de plusieurs hôte docker paramétrer pour fonctionner ensemble},%
+descriptionplural={est un ensemble de plusieurs hôte docker paramétrer pour fonctionner ensemble},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Dockerfile}{}%
+{%
+\gls@defglossaryentry{Dockerfile}%
+{%
+name={Dockerfile},%
+sort={Dockerfile},%
+type={main},%
+first={Dockerfile},%
+firstplural={Dockerfiles},%
+text={Dockerfile},%
+plural={Dockerfiles},%
+description={est un fichier dans lequel nous venons définir notre image à venir a l’aide de mot clef, il définit le système ainsi que la configuration de ce dernier et les différentes commande a effectuer sur le système si nécessaire},%
+descriptionplural={est un fichier dans lequel nous venons définir notre image à venir a l’aide de mot clef, il définit le système ainsi que la configuration de ce dernier et les différentes commande a effectuer sur le système si nécessaire},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Docker machine}{}%
+{%
+\gls@defglossaryentry{Docker machine}%
+{%
+name={Docker machine},%
+sort={Docker machine},%
+type={main},%
+first={Docker machine},%
+firstplural={Docker machines},%
+text={Docker machine},%
+plural={Docker machines},%
+description={est un outil permettant la création d’hôte docker},%
+descriptionplural={est un outil permettant la création d’hôte docker},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{service}{}%
+{%
+\gls@defglossaryentry{service}%
+{%
+name={Service},%
+sort={Service},%
+type={main},%
+first={Service},%
+firstplural={Services},%
+text={Service},%
+plural={Services},%
+description={est la définition de la façon dont on exécuter les conteneurs d'application dans un essaim. Au niveau le plus élémentaire, un service définit l'image du conteneur à exécuter dans l'essaim et les commandes à exécuter dans le conteneur. Un service est souvent un microservice dans le cadre d'une application plus importante},%
+descriptionplural={est la définition de la façon dont on exécuter les conteneurs d'application dans un essaim. Au niveau le plus élémentaire, un service définit l'image du conteneur à exécuter dans l'essaim et les commandes à exécuter dans le conteneur. Un service est souvent un microservice dans le cadre d'une application plus importante},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Docker compose}{}%
+{%
+\gls@defglossaryentry{Docker compose}%
+{%
+name={Docker compose},%
+sort={Docker compose},%
+type={main},%
+first={Docker compose},%
+firstplural={Docker composes},%
+text={Docker compose},%
+plural={Docker composes},%
+description={est un outil pour définir et exécuter des applications complexes. Il permet de définir une application multi-conteneur dans un seul fichier. Il permet de lancer cette dernière en une seule commande qui fait tout ce qui doit être fait pour l'exécuter},%
+descriptionplural={est un outil pour définir et exécuter des applications complexes. Il permet de définir une application multi-conteneur dans un seul fichier. Il permet de lancer cette dernière en une seule commande qui fait tout ce qui doit être fait pour l'exécuter},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
