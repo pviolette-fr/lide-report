@@ -2,6 +2,7 @@
 %Si t'as pas bossé sur l'interface utilisateur t'y touche pas.
 %Sauf si la personne dont le nom est écris en haut te dis d'y toucher.
 %Deso Paulin moi j'y ai touché
+%Putin tu casses le couilles
 \chapter{Interface Utilisateur}
 
 \section{Présentation}
@@ -31,7 +32,6 @@ L'interface est divisée en quatre parties :
 En plus des outils déjà décrits dans la section \ref{sec-principaux-outils}, l'interface utilisateur utilise plusieurs plugins Javascript.
 
 L'éditeur de texte est Ace\footnote{Voir \url{https://ace.c9.io/}}, un éditeur de texte pour le web supportant la coloration syntaxique de près de 110 langages, mis à disposition sous licence BSD et maintenu comme le principal éditeur pour l'IDE AWS Cloud9. Cet éditeur a pour avantage de supporter de nombreuses fonctionnalités, parmi lesquelles :
-\
 
 \begin{itemize}
   \item L'indentation automatique
@@ -45,19 +45,19 @@ Toutes ces raisons nous ont poussés à utiliser ce plugin.
 
 Afin de gérer la console, nous avons choisi d'utiliser le plugin jqconsole (Plus de détails en \ref{subsec-terminal}).
 
-Dernièrement, pour afficher les alertes relatives à l'interface, nous utilisons le plugin SweetAlert2\footnote{Voir \url{https://limonte.github.io/sweetalert2/}} qui nous permet d'avoir des alertes personnalisables et bien plus esthétiques que les alertes classiques.
+Dernièrement, pour afficher les alertes relatives à l'interface, nous utilisons le plugin SweetAlert2\footnote{Voir \url{https://limonte.github.io/sweetalert2/}} qui nous permet d'avoir des alertes bien plus esthétique que les alertes standards, et personnalisable à la fois au niveau esthétique que du contenu (champs, texte des boutons, etc...).
 
-\subsection{Organisation des templates TWIG}
+\section{Organisation des templates TWIG}
 
-Le template twig de l'application, \texttt{index.html.twig}, hérite du template \texttt{layout.html.twig}, qui défini une base pour l'application, et qui contient la barre de navigation. Nous avons également créer differents templates pour les modales d'options (de personnalisation, de lancement, d'importation et de création de fichier).
+Le template twig de l'application, \texttt{index.html.twig}, hérite du template \texttt{layout.html.twig}, qui défini une base pour l'application, et qui contient la barre de navigation. Nous avons également créer differents templates pour les modales d'options (personnalisation, lancement, importation et création de fichier).
 
-Les templates du bundle FOS (gérant la partie utilisateur du site) sont également redéfini pour s'integrer avec le reste de l'application.
+Les templates du bundle FOS (gérant la partie utilisateur du site) sont également redéfinis pour s'integrer avec le reste de l'application.
 
 \section{Environnement de Développement}
 
 \subsection{Gestions des langages}
 
-Une des contraintes données pour le projet était d'avoir un éditeur adaptable à plusieurs langage. Il a donc fallu penser l'interface pour répondre à cette problèmatique.
+Une des contraintes données pour le projet était d'avoir un éditeur disponsant d'une coloration syntaxique, et pouvant supporter plusieurs langage, et pouvoir ensuite compilé (si besoin) et éxectué le code écris dans ces langages. Il a donc fallu penser l'interface pour répondre à cette problèmatique.
 
 %TODO
 Une liste des langages configuré est stocké dans la base de données, comme vu dans la section INSER_REF_BD. La page est donc génerer à partir de ces informations : un menu déroulant est inséré dans la barre de navigation, avec un choix pour chacun des langages marqué comme actif. Le langage selectionné est marqué via la classe css \texttt{.choix-langage-selected}, qui cache le lien dans le menu déroulant. Lors du chargement de la page, ou à la selection d'un autre langage, un requête AJAX est effectué afin de récupérer les informations sur le langage selectionné :
@@ -67,9 +67,9 @@ Une liste des langages configuré est stocké dans la base de données, comme vu
   \item le nom du compilateur (utilisé dans le formulaire d'exécution pour afficher la commande de compilation qui va être exécutée).
   \item le nom du langage
 \end{itemize}
-Chaque lien dans le menu déroulant contient un attribut data-id qui permet d'indentifier la langage (correspond à l'id du langage dans la base de donnée).
+Chaque lien dans le menu déroulant contient un attribut \texttt{data-id} qui permet d'indentifier la langage (correspond à l'id du langage dans la base de donnée).
 
-Ces informations sont ensuite utilisé pour mettre à jour l'éditeur.
+Ces informations sont ensuite utilisées pour mettre à jour l'éditeur.
 
 \subsection{Personnalisation}
 
