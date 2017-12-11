@@ -1,19 +1,23 @@
 \chapter{Présentation du projet}
 
-\par Les étudiants arrivant dans le parcours MPCIE à l'UFR Sciences de l'Université d'Angers suivent des cours d'algorithmie au cours de leur premier semeste. Dans le cadre de cet enseignement, ils vont programmer en C++ lors de leur scéance de travaux pratiques. Ceci entraîne un problème lorsque ces étudiants veulent retravailler en dehors des salles du département Informatique : les outils necessaires pour programmer (au minimim un compilateur et un éditeur de texte basique, de préférence un éditeur avancé disposant au moins d'une coloration syntaxique) ne sont pas forcement installé sur leur ordinateurs, et il peut parfois être compliqué d'installer ces outils, ou même impossible si les étudiants souhaitent travailler sur des postes où ils ne sont pas administrateur, comme par exemple à la Bibliothèque Universitaire.
-\par De ce fait, il serait interressant de proposer aux étudiants un environnement de développement fonctionnant dans un navigateur web, permettant d'écrire du code dans un éditeur adpaté, puis de l'exécuter sur un serveur distant. De plus, puisque cette application pourrait être utilisé également en scéance de TP, les étudiants retrouverait exactement le même environnement qu'il soit chez eux ou en cours.
+\par Dans le cadre des enseignements d'algorithmie proposés par l'Université d'Angers pour le pacours MPCIE, les étudiants vont apprendre à programmer avec différents langages. Un problème peut apparaître lorsque ces étudiants souhaitent retravailler leurs exercices sur d'autres postes que ceux du département informatique; les outils nécessaires pour programmer (a minima un compilateur et un éditeur de texte) ne seront pas systématiquement installés sur les ordinateurs et leurs installations peuvent se montrer compliquées voire impossibles si les droits d'administrateurs ne sont pas attribués à l'utilisateur (c'est le cas sur les postes de la bibliothèque universitaire, par exemple).
+
+\par De ce fait, l'Université d'Angers a souhaité proposer à ses étudiants un environnement de développement en ligne qui leur permettrait d'écrire et de compiler du code simplement et sans installation préalable.
+
+\par Aussi, cette application pourrait être utilisée lors des séances de travaux pratiques, ce qui permettrait aux étudiants de retrouver l'environnement qu'ils utilisent chez eux.
+
 
 \section{Sujet}
 %Présentation du sujet : entreprise, encadrement
 
-\par Notre objectif était de réaliser la première version d'un environnement de développement simplifié accessible depuis un navigateur web. Il permet d'écrire et de compiler du code rapidement et simplement sans avoir à installer de compilateur sur le poste client (la compilation s'effectuant sur le serveur). Cet outil pourrait être utilisé, dans le cadre des enseignements à l'Université d'Angers, dans plusieurs unités dès la L1 jusqu'à la L3. \\
+\par Notre objectif était de réaliser la première version d'un environnement de développement simplifié accessible depuis un navigateur web. Il devait permettre d'écrire et de compiler du code rapidement et simplement sans avoir à installer de compilateur sur le poste client (la compilation s'effectuant sur le serveur). Cet outil pourrait être utilisé, dans le cadre des enseignements à l'Université d'Angers, dans plusieurs unités dès la L1 jusqu'à la L3 (voire jusqu'au master). \\
 
 \par Certaines caractéristiques nous étaient demandées :
 
 \begin{itemize}
 
 	\item l'édition de code dans un éditeur proposant la coloration syntaxique
-	\item la possibilité de compiler le code depuis des compilateurs installés sur le serveur. Le logiciel devra prendre en compte différents langages afin d’être utilisable dans différentes UE
+	\item la possibilité de compiler le code depuis des compilateurs installés sur le serveur. Le logiciel devait prendre en compte différents langages afin d’être utilisable dans différentes UE
 	\item l'accès aux messages d'erreur de la compilation
 	\item l'exécution de l'application compilée sur le serveur avec affichage de la sortie
 	\item des fonctionnalités avancées devaient être développées telles que l’intégration du débogueur, une gestion plus poussée de l’ensemble de fichiers composant un projet, l'auto-complétion du code, l'intégration d’outils d’analyse
