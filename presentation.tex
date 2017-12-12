@@ -20,8 +20,11 @@
 
 \section{Problématique soulevée}
 
-\par L'enjeu principal de ce projet était la sécurité du serveur. En effet, l'application va compiler et exécuter du code inconnu. Il faut, d'une part, empêcher qu'un utilisateur puisse obtenir des accès qu'il ne devrait pas obtenir, et aussi, gérer les inévitables programmes trop gourmands. Lorsqu'un étudiant tente d'exécuter un programme qui contient des erreurs ou qui demande trop de mémoire CPU, il ne faut pas que le serveur qui gère l'exécution ni que les exécutions d'autres étudiants soient ralenties ou bloquées. Il est donc nécessaire d'élaborer une architecture visant à répondre à ces problématiques.
+\par L'enjeu principal de ce projet était la sécurité du serveur. En effet, l'application va compiler et exécuter du code inconnu. Il faut, d'une part, empêcher qu'un utilisateur puisse obtenir des accès qu'il ne devrait pas obtenir, et aussi, gérer les inévitables programmes trop gourmands. Lorsqu'un étudiant tente d'exécuter un programme qui contient des erreurs ou qui demande trop de mémoire CPU, il ne faut pas que le serveur qui gère l'exécution ni que les exécutions d'autres étudiants soient ralenties ou bloquées. Il est donc nécessaire d'élaborer une architecture visant à répondre à ces problématiques. Nous avons décidé d'utiliser une technologie de conteneurisation pour répondre à cette problèmatique.
 
+\par Le projet se devait également d'être modulable, afin de pouvoir facilement ajouté le support de nouveau langages. À cette fin, nous avons décidé de conserver des informations lié à chaque langage supporté dans une base de donnéee relationnelle.
+
+\par Nous avons aussi décidé de réduire l'accès à l'application, en demandant aux utilisateurs de s'inscrire via une adresse email (inscription pouvant être ouverte seulement à certaines personnes, par exemple sur la base du nom de domaine d'une adresse email : cela permet d'empecher les personnes extérieur à l'Université d'utiliser l'application, réduisant ainsi la charge sur les serveurs). Afin de pouvoir répondre plus facilement à cette problèmatique et à la précedente, nous avons choisi de nous placer dans un framework déjà existant qui nous permettrai de facilité la gestion de ces fonctionnalités.
 
 \section{Choix des principaux outils et technologies}
 \label{sec-principaux-outils}
@@ -29,10 +32,8 @@
 
 \par Nous avons choisi d'utiliser MariaDB comme système de base de données. MariaDB est l'un des systèmes de gestion de base de données les plus importants et a l'avantage d'être distribué sous licence libre. De plus, cet outil est soutenu par une large communauté, ce qui assure une maintenance sur le long terme. Néanmoins, ce SGBD\footnote{Système de Gestion de Base de Données} peut facilement être remplacé par un autre au besoin, puisque toutes les manipulations de base de données se font via l'ORM\footnote{Object-Relationnal Mapping} de Symfony. Le seul pré-requis est que le SGBD soit supporté par Doctrine. \\
 
-\par Bootstrap\footnote{Voir \url{https://getbootstrap.com/}} est un framework HTML/CSS/JS simple d'utilisation. Il utilise un layout sous la forme d'une grille qui s'adapte en fonction de la taille de l'écran. Il inclut aussi un style de base pour tous les éléments HTML, ce qui permet d'obtenir un style indépendant du navigateur ou de l'OS utilisé par l'utilisateur. Ce style peut également être modifié via des constantes SASS\footnote{Syntactically Awesome Stylesheets} si on souhaite aller plus loin dans la personnalisation de l'application. 
+\par Bootstrap\footnote{Voir \url{https://getbootstrap.com/}} est un framework HTML/CSS/JS simple d'utilisation. Il utilise un layout sous la forme d'une grille qui s'adapte en fonction de la taille de l'écran. Il inclut aussi un style de base pour tous les éléments HTML, ce qui permet d'obtenir un style indépendant du navigateur ou de l'OS utilisé par l'utilisateur. Ce style peut également être modifié via des constantes SASS\footnote{Syntactically Awesome Stylesheets} si on souhaite aller plus loin dans la personnalisation de l'application.
 \par Enfin, Bootstrap possède de nombreux composants faciles à manipuler via des attributs HTML (ou via le Javascript) tels que les dropdowns, modals, alert... \\
-
-
 
 \par La conteneurisation, et plus particulièrement Docker\footnote{\url{https://www.docker.com/}}, s'est vite imposée dans l'architecture du serveur. Docker est une méthode de conteneurisation légère qui permet de travailler toujours sur le même environnement (la même image est réutilisée autant de fois que nécessaire) et qui nous a permis d'isoler les compilations et exécutions des programmes.
 
