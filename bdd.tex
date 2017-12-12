@@ -20,7 +20,7 @@ La figure suivante présente le modèle conceptuel des données.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{./img/BDD.png}
+\includegraphics[width=0.8\textwidth]{./img/bdd/bdd.png}
 \caption{Modèle conceptuel des données}
 \end{figure}
 
@@ -44,7 +44,7 @@ L’avantage de stocker en base de données les langages est de rendre autonome 
 
 \par La table details\_langage contient les extensions du langage correspondant ainsi qu’un modèle de base (par exemple le Hello World). Cela permet de proposer à l’utilisateur l’extension qu’il veut écrire.
 
-\subsection{Partie administration}
+\subsection{Partie gestion des utilisateurs}
 
 \subsubsection{Fos user}
 
@@ -57,6 +57,13 @@ Cette table a pour but de sauvegarder les e-mails des utilisateurs qui n’ont p
 \section{Administration}
 
 \par Pour mettre en place l’interface administrateur, nous avons utilisé différents outils proposé par Symfony et notamment les bundles FOSUserBundle et EasyAdminBundle.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{./img/admin/easyadmin_langage.png}
+\caption{Page d'administration}
+\end{figure}
+
 
 \subsection{FOSUserBundle}
 

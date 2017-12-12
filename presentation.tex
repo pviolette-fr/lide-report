@@ -20,11 +20,11 @@
 
 \section{Problématique soulevée}
 
-\par L'enjeu principal de ce projet était la sécurité du serveur. En effet, l'application va compiler et exécuter du code inconnu. Il faut, d'une part, empêcher qu'un utilisateur puisse obtenir des accès qu'il ne devrait pas obtenir, et aussi, gérer les inévitables programmes trop gourmands. Lorsqu'un étudiant tente d'exécuter un programme qui contient des erreurs ou qui demande trop de mémoire CPU, il ne faut pas que le serveur qui gère l'exécution ni que les exécutions d'autres étudiants soient ralenties ou bloquées. Il est donc nécessaire d'élaborer une architecture visant à répondre à ces problématiques. Nous avons décidé d'utiliser une technologie de conteneurisation pour répondre à cette problèmatique.
+\par L'enjeu principal de ce projet était la sécurité du serveur. En effet, l'application va compiler et exécuter du code inconnu. Il faut, d'une part, empêcher qu'un utilisateur puisse obtenir des accès qu'il ne devrait pas obtenir, et aussi, gérer les inévitables programmes trop gourmands. Lorsqu'un étudiant tente d'exécuter un programme qui contient des erreurs ou qui demande trop de mémoire CPU, il ne faut pas que le serveur qui gère l'exécution ni que les exécutions d'autres étudiants soient ralenties ou bloquées. Il est donc nécessaire d'élaborer une architecture visant à répondre à ces problématiques. Nous avons décidé d'utiliser une technologie de conteneurisation pour répondre à cette problématique.
 
-\par Le projet se devait également d'être modulable, afin de pouvoir facilement ajouté le support de nouveau langages. À cette fin, nous avons décidé de conserver des informations lié à chaque langage supporté dans une base de donnéee relationnelle.
+\par Le projet se devait également d'être modulable, afin de pouvoir facilement ajouter le support de nouveaux langages. À cette fin, nous avons décidé de conserver les informations liées à chaque langage supporté dans une base de données relationnelle.
 
-\par Nous avons aussi décidé de réduire l'accès à l'application, en demandant aux utilisateurs de s'inscrire via une adresse email (inscription pouvant être ouverte seulement à certaines personnes, par exemple sur la base du nom de domaine d'une adresse email : cela permet d'empecher les personnes extérieur à l'Université d'utiliser l'application, réduisant ainsi la charge sur les serveurs). Afin de pouvoir répondre plus facilement à cette problèmatique et à la précedente, nous avons choisi de nous placer dans un framework déjà existant qui nous permettrai de facilité la gestion de ces fonctionnalités.
+\par Nous avons aussi décidé de réduire l'accès à l'application, en demandant aux utilisateurs de s'inscrire via une adresse e-mail (inscription pouvant être ouverte seulement à certaines personnes, par exemple sur la base du nom de domaine d'une adresse e-mail : cela permet d'empêcher les personnes extérieur à l'Université d'utiliser l'application, réduisant ainsi la charge sur les serveurs). Afin de pouvoir répondre plus facilement à cette problématique et à la précédente, nous avons choisi d'utiliser un framework déjà existant qui nous permettrait de faciliter la gestion de ces fonctionnalités.
 
 \section{Choix des principaux outils et technologies}
 \label{sec-principaux-outils}
@@ -41,6 +41,8 @@
 
 \par Afin de travailler efficacement, nous avons séparé le projet en 4 parties plus ou moins autonomes: Paulin s'est occupé de l'interface graphique, Yassine de l'administration, Jérôme de l'architecture du serveur et Valentine de la communication entre les serveurs.
 
-\subsection{Planning}
-
-Faire le planning
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{./img/gantt_LIDE.png}
+\caption{Planning}
+\end{figure}

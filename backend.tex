@@ -1,17 +1,16 @@
 \chapter{Serveur}
 
-\par Afin de garantir la bonne compréhension des différents termes techniques qui vont suivre, un lexique donnant toutes les définitions nécessaire est disponible en annexe.
+\par Afin de garantir la bonne compréhension des différents termes techniques qui vont suivre, un lexique donnant toutes les définitions nécessaires est disponible en annexe.
 
 \section{Architecture}
 
 \par L’application web vise à être utilisée par des étudiants, certaines conditions de sécurité doivent donc être respectées.
  
-\par Les différents programmes doivent pouvoir être lancés sur un environnement vierge indépendant et, bien sûr, isolés du serveur d’exécution afin de prévenir toute corruption de données ou problème de sécurité. Pour répondre à cette problématique, nous nous sommes tournés vers une technique encore jeune et prometteuse : la conteneurisation. Cette technique peut être utilisée via différentes technologies, celle que nous avons choisi est l’une des leader du marché : Docker.
+\par Les différents programmes doivent pouvoir être lancés sur un environnement vierge indépendant et, bien sûr, isolés du serveur d’exécution afin de prévenir toute corruption de données ou problème de sécurité. Pour répondre à cette problématique, nous nous sommes tournés vers une technique encore jeune et prometteuse : la conteneurisation. Cette technique peut être utilisée via différentes technologies, celle que nous avons choisi est l’une des leaders du marché : Docker.
 
 \subsection{Choix effectués}
 
 \subsubsection{Choix de la conteneurisation}
-
 
 \par La conteneurisation répond à nos critères d’environnement puisqu’elle permet de créer un espace propre indépendant et sans incidence sur l’environnement qui héberge le \gls{service} de chaque exécution. Grâce à cette technique, nous avons pu gérer les problèmes de sécurité et d’allocation de ressources. Nous avons choisi la conteneurisation plutôt que les machines virtuelles car elle a l’avantage d’être plus légère mais aussi plus malléable.  
 
@@ -41,7 +40,7 @@
 \subsubsection{Architecture envisagée}
 
 \par Le client a exprimé le besoin d'utiliser plusieurs serveurs répartis sur tout le territoire français pour les exécutions des programmes. Ces serveurs seront dotés d'un système de load-balancing pour répartir les charges.
-La nouvelle architecture a été pensée afin de répondre à cette nécessité et pour assurer une haute disponibilité et respecter la bonne utilisation des principes de Docker.
+La nouvelle architecture a été pensée afin de répondre à cette nécessité, assurer une haute disponibilité et respecter la bonne utilisation des principes de Docker.
 
 \par Dans sa version finale, l’application n’aura plus besoin d’un serveur d’hébergement. En effet, l’application entière sera conteneurisée sous forme de services : un service global pour l’exécution des conteneurs, un pour la partie web et un autre pour la base de données.
 
@@ -54,13 +53,11 @@ La nouvelle architecture a été pensée afin de répondre à cette nécessité 
 
 \paragraph{Avantages de l'architecture envisagée}
 
-\par L’application sera accessible en haute disponibilité. Par conséquent, les différents services pourront posséder un certain nombre de répliques et pourront gérer le load-balancing. Docker s'occupera de la synchronisation des différentes répliques de façon automatique. De plus, si l’une des répliques n’est plus actives, une autre est automatiquement créée empêchant ainsi l'application d'être impactée si un serveur vient à tomber. 
+\par L’application sera accessible en haute disponibilité. Par conséquent, les différents services pourront posséder un certain nombre de répliques et pourront gérer le load-balancing. Docker s'occupera de la synchronisation des différentes répliques de façon automatique. De plus, si l’une des répliques n’est plus actives, une autre est automatiquement créée empêchant ainsi l'application d'être impactée si un serveur venait à tomber. 
 
 \par La transformation de l’application sous forme de service permet également de créer un Composerfile. Ce fichier permet de lancer les différents services de l’application simultanément mais également de les paramétrer. Ainsi, nous avons la certitude que tous les services sont lancés et ont la bonne configuration et, également, de garder une trace des versions.
 
 \par De plus, un essaim Docker va être mis en place. Tous les serveurs utilisés par l’application feront partie de l’essaim, cela permettra de lier les serveurs entre eux afin de mettre en place le load-balancing.
-
-
 
 \par La mise en place d’une telle structure soulève plusieurs questions.
 
@@ -76,19 +73,19 @@ La nouvelle architecture a été pensée afin de répondre à cette nécessité 
 
 \par Actuellement, deux alternatives dominent le marché : Kubernetes et Docker swarm. Nous avons tenté de mettre en place Docker swarm mais plusieurs problèmes sont apparus. \\
 
-\par Deux façons de faire sont possibles; soit ajouter les serveurs directement à l’essaim soit créer des \gls{dockermachine}s sur les serveurs que l’on ajoute ensuite. Les machines Docker permettent de créer un sous réseau par hôte et d’améliorer la sécurité. Une fois les services définis et l’essaim en place, nous nous sommes rendus compte que la communication entre les services n’était pas aussi aisée que ce que l’on pouvait penser. 
+\par Deux façons de faire sont possibles; soit ajouter les serveurs directement à l’essaim soit créer des \gls{dockermachine}s sur les serveurs que l’on ajoute ensuite. Les machines Docker permettent de créer un sous-réseau par hôte et d’améliorer la sécurité. Une fois les services définis et l’essaim en place, nous nous sommes rendus compte que la communication entre les services n’était pas aussi aisée que ce que l’on pouvait penser. 
 
-\par Après avoir parcouru la documentation de docker au sujet des essaims, nous nous sommes aperçus que la communication inter-services via l’\gls{essaim} était peu répandue et assez complexe. La mise en place d’un réseau de communication via Consul a été testée mais le temps restant ne nous a pas permis d’aller au bout de cet essai ni de l’étudier en profondeur. Ces différents problèmes ont remis en question l’utilisation de Docker swarm. Une étude des capacités de Docker swarm et de Kurbernetes est nécessaire afin de déterminer laquelle est la plus à même de répondre à nos besoins.
+\par Après avoir parcouru la documentation de Docker au sujet des essaims, nous nous sommes aperçus que la communication inter-services via l’\gls{essaim} était peu répandue et assez complexe. La mise en place d’un réseau de communication via Consul a été testée mais le temps restant ne nous a pas permis d’aller au bout de cet essai ni de l’étudier en profondeur. Ces différents problèmes ont remis en question l’utilisation de Docker swarm. Une étude des capacités de Docker swarm et de Kurbernetes est nécessaire afin de déterminer laquelle est la plus à même de répondre à nos besoins.
 
 \paragraph{Les avantages de cette architecture}
 
-\par L'architecture envisagée permet de définir notre application en micro services avec une charge répartie sur plusieurs serveurs. Cela permet de rajouter des ressources au besoin. 
-\par Elle permet aussi d’avoir une application en haute disponibilité : la gestion des micro services permet, en cas de problème sur l’un des micro services, de minimiser l'ampleur de la panne mais permet également la réplique sur les serveurs pour ne pas avoir de coupure si l’un des serveurs n’est plus disponible. 
-\par Les conteneurs permettent d’avoir une sécurité supplémentaire à l’aide de sous-réseaux et d’environnements sans impact sur le serveur d’exécution. L’utilisation de micro services avec un orchestrateur de \gls{conteneur}s tel que Kubernetes ou Docker swarm permet la gestion d'une grande partie de la communication et de la sécurité.   
+\par L'architecture envisagée permet de définir notre application en micro-services avec une charge répartie sur plusieurs serveurs. Cela permet de rajouter des ressources au besoin. 
+\par Elle permet aussi d’avoir une application en haute disponibilité : la gestion des micro-services permet, en cas de problème sur l’un d'eux, de minimiser l'ampleur de la panne mais également de répliquer sur les serveurs pour ne pas avoir de coupure si l’un des serveurs n’est plus disponible. 
+\par Les conteneurs permettent d’avoir une sécurité supplémentaire à l’aide de sous-réseaux et d’environnements sans impact sur le serveur d’exécution. L’utilisation de micro-services avec un orchestrateur de \gls{conteneur}s tel que Kubernetes ou Docker swarm permet la gestion d'une grande partie de la communication et de la sécurité.   
 
 \subsection{Problèmes rencontrés} 
 
-\par Afin de correspondre aux besoins du client mais aussi dans un but d'optimisation de la sécurité et de l'accessibilité, l’architecture initiale du site a dû être divisée en deux étapes : une architecture basique avec la mise en place d’un système de conteneurs et une communication temporaire. L’architecture temporaire a été pensée afin de minimiser les changements lors du passage à l’architecture envisagée. 
-\par La communication a également posé des soucis, notamment lors de l’ouverture du socket SHH qui vient créer le container et ne permet pas à l’étudiant d'accéder au serveur mais uniquement au conteneur.
+\par Afin de correspondre aux besoins du client, mais aussi dans un but d'optimisation de la sécurité et de l'accessibilité, l’architecture initiale du site a dû être divisée en deux étapes : une architecture basique avec la mise en place d’un système de conteneurs et une communication temporaire. L’architecture temporaire a été pensée afin de minimiser les changements lors du passage à l’architecture envisagée. 
+\par La communication a également posé des soucis, notamment lors de l’ouverture du socket SHH qui vient créer le conteneur et ne permet pas à l’étudiant d'accéder au serveur mais uniquement au conteneur.
 
 \par Les différentes configurations de sécurité du réseau de l’Université d’Angers ont été très dérangeantes notamment lors de la génération des images grâce au \gls{dockerfile}. L’utilisation des services SSH étant bloquée, il a également été compliqué de mettre en place la connexion SSH de la première version de l’application. 
